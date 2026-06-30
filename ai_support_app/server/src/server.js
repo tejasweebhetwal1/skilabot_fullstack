@@ -232,13 +232,37 @@ app.get("/api/admin/summary", auth, adminOnly, async (req, res) => {
 
 app.post("/api/leads", async (req, res) => {
   const { email, name = "", subject = "", message = "", source = "landing" } = req.body || {};
-  if (!email) return res.status(400).json({ error: "Email is required" });
+
+  if (!email) {
+    return res.status(400).json({ error: "Email is required" });
+  }
+
   const lead = await updateDb(async db => {
-    const item = { id: nanoid(), email, name, subject, message, source, createdAt: new Date().toISOString() };
+    const item = {
+      id: nanoid(),
+      email,
+      name,
+      subject,
+      message,
+      source,
+      createdAt: new Date().toISOString(),
+    };
+
     db.leads.push(item);
     return item;
   });
-  res.status(201).json(lead);
+
+  try {
+    await sendLeadEmails(lead);
+  } catch (err) {
+    console.error("Lead email failed:", err.message);
+  }
+
+  res.status(201).json({
+    ok: true,
+    message: "Lead saved and email notification sent",
+    lead,
+  });
 });
 
 // ── Admin routes ──────────────────────────────────────────────────────────────
@@ -337,7 +361,7 @@ app.put("/api/admin/settings", auth, adminOnly, async (req, res) => {
     db.settings = { ...db.settings, ...req.body };
     return db.settings;
   });
-  res.json(updated);
+  res.json(updated); 
 });
 
 // Delete conversation (admin)
