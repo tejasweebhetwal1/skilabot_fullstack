@@ -1,0 +1,88 @@
+{
+  "users": [
+    {
+      "id": "EvPpbZ4iv1LRZ3o2Ah-C5",
+      "name": "tejaswee",
+      "email": "tessa@gmail.com",
+      "passwordHash": "$2a$10$GwUHK.WdBfNsKzE4QEUsCOeFoUjoLb1zvmYcPmN5jiYfOW1AW9s.6",
+      "role": "admin",
+      "createdAt": "2026-06-29T12:04:09.846Z"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "A2D4funUPD96XUlIG-WCs",
+      "userId": "EvPpbZ4iv1LRZ3o2Ah-C5",
+      "title": "Can I export my chat history?",
+      "status": "resolved",
+      "sentiment": "positive",
+      "messages": [
+        {
+          "id": "ldPIZ-1JAkp2opRj5VQNd",
+          "role": "user",
+          "text": "Can I export my chat history?",
+          "createdAt": "2026-06-29T12:04:38.095Z"
+        },
+        {
+          "id": "M2BkE6u8uakIMBgxGKQ44",
+          "role": "bot",
+          "text": "Thanks for explaining. I’ve recorded your message and here’s the best next step: please share any account email, order number, or screenshot if relevant, and I’ll guide you or escalate it.",
+          "createdAt": "2026-06-29T12:04:38.095Z"
+        },
+        {
+          "id": "20ehrGhlNdb_ruWi6i1PU",
+          "role": "user",
+          "text": "32415",
+          "createdAt": "2026-06-29T12:04:54.150Z"
+        },
+        {
+          "id": "bF6sK8_P-ecBoK7EfjsLG",
+          "role": "bot",
+          "text": "Thanks for explaining. I’ve recorded your message and here’s the best next step: please share any account email, order number, or screenshot if relevant, and I’ll guide you or escalate it.",
+          "createdAt": "2026-06-29T12:04:54.150Z"
+        },
+        {
+          "id": "oyDwUEnGdnncGvIzWG5JI",
+          "role": "user",
+          "text": "my order number is 67",
+          "createdAt": "2026-06-29T12:05:05.749Z"
+        },
+        {
+          "id": "ErhAMGbuy0A8Ms34Z9HLp",
+          "role": "bot",
+          "text": "Thanks for explaining. I’ve recorded your message and here’s the best next step: please share any account email, order number, or screenshot if relevant, and I’ll guide you or escalate it.",
+          "createdAt": "2026-06-29T12:05:05.749Z"
+        }
+      ],
+      "createdAt": "2026-06-29T12:04:38.095Z",
+      "updatedAt": "2026-06-29T12:05:05.749Z"
+    },
+    {
+      "id": "qtHG2XXP3hpPZpRyvpbgE",
+      "userId": "EvPpbZ4iv1LRZ3o2Ah-C5",
+      "title": "New conversation",
+      "status": "open",
+      "sentiment": "neutral",
+      "messages": [
+        {
+          "id": "RwhlTR_XuIO56LRAsOK3B",
+          "role": "bot",
+          "text": "Hello! 👋 I'm ClariBot, your AI support assistant. How can I help you today?",
+          "createdAt": "2026-06-30T03:38:53.065Z"
+        }
+      ],
+      "createdAt": "2026-06-30T03:38:53.065Z",
+      "updatedAt": "2026-06-30T03:38:53.065Z"
+    }
+  ],
+  "leads": [],
+  "settings": {
+    "businessName": "Claribot ",
+    "escalationEmail": "admin@yourcompany.com",
+    "botTone": "Friendly and concise",
+    "retentionDays": 90,
+    "confidenceThreshold": 85,
+    "maxTurns": 8,
+    "slackWebhook": ""
+  }
+}
