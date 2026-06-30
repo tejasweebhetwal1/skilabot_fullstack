@@ -13,6 +13,54 @@ import nodemailer from "nodemailer";
 const app = express();
 const PORT = Number(process.env.PORT || 4000);
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me";
+const mailer = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT || 465),
+  secure: Number(process.env.SMTP_PORT || 465) === 465,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
+async function sendLeadEmails(lead) {
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.log("Email not configured. Lead saved only:", lead.email);
+    return;
+  }
+
+  await mailer.sendMail({
+    from: `"ClariBot" <${process.env.SMTP_USER}>`,
+    to: process.env.ADMIN_EMAIL || process.env.SMTP_USER,
+    subject: "New free trial lead",
+    text: `
+New lead captured:
+
+Name: ${lead.name || "Not provided"}
+Email: ${lead.email}
+Subject: ${lead.subject || "Free trial"}
+Message: ${lead.message || "Started free trial"}
+Source: ${lead.source}
+Created at: ${lead.createdAt}
+    `,
+  });
+
+  await mailer.sendMail({
+    from: `"ClariBot" <${process.env.SMTP_USER}>`,
+    to: lead.email,
+    subject: "We received your free trial request",
+    text: `
+Hi ${lead.name || "there"},
+
+Thanks for your interest in ClariBot.
+
+We received your free trial request and our team will get back to you soon.
+
+Best,
+ClariBot Support
+    `,
+  });
+}
 
 app.use(helmet());
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:5173", credentials: true }));
