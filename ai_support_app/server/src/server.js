@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
 import { readDb, updateDb } from "./store.js";
 import { makeBotReply, classify } from "./bot.js";
+import nodemailer from "nodemailer";
 
 const app = express();
 const PORT = Number(process.env.PORT || 4000);
